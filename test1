@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+# -*- encoding:UTF-8 -*-
+
+
+def string_match(str1, str2):
+    ans = str2
+    begin = 0
+    end = len(str2)
+    i = 1
+    while (ans in str1) is False:
+        if end == len(str2):  # 一趟移动是否结束了
+            begin = 0        # if里面的语句控制子字符串每趟移动减小1
+            end = len(str2) - i
+            i += 1
+        else:       # else里面的语句控制子字符串往右移动
+            begin += 1
+            end += 1
+        ans = str2[begin: end]  # 取子字符串
+    return ans
+
+
+def main():
+    str1 = '123456'
+    str2 = '123789'
+
+    print string_match(str1, str2)
+
+
+if __name__ == '__main__':
+    main()
