@@ -1,0 +1,64 @@
+##要考虑两个零相加为零的情况
+##要考虑负数相加的情况
+##要考虑输入较多的时间限制
+###使用折半查找可以提高效率,但是有一些是无序的list 就无法通过测试，折半查找的前提是要求有序的list
+class Solution:
+#     def binary_search2(self,list1, item):
+#         """ 递归实现 """
+#         self.list1 = list1
+#         self.item =item
+#         if len(self.list1) == 0:
+#             return None
+
+#         else:
+#             midpoint = len(self.list1) // 2
+#             if self.list1[midpoint] == item:
+#                 return midpoint
+#             else:
+#                 if self.list1[midpoint] > item:
+#                     return self.binary_search2(self.list1[:midpoint], self.item)
+#                 else:
+#                     return self.binary_search2(self.list1[midpoint + 1:], self.item)
+#     def binary_search(self,lis, key):
+#         self.list =list
+#         self.key =key
+#         self.low = 0
+#         self.high = len(lis) - 1
+#         self.time = 0
+#         while self.low < self.high:
+#             self.time += 1  # 记录二分了几次
+#             self.mid = int((self.low + self.high) / 2)
+#             if self.key < lis[self.mid]:
+#                 self.high = self.mid
+#             elif self.key > lis[self.mid]:
+#                 self.low = self.mid
+#             else:  # key = lis[mid]
+#                 return self.mid
+
+        
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        self.nums = nums
+        self.target = target
+         
+        for i in range(self.nums.__len__()):
+            self.obj = self.target-self.nums[i]
+            #index = self.binary_search2(self.nums[i + 1:],self.obj)
+            try:
+                index =self.nums[i + 1:].index(self.obj)
+                res = [i, i + 1 + int(index)]
+                return res
+            except:
+                continue
+                
+
+if __name__ == '__main()__':
+    nums = [2,7,11,15]
+    target=9
+    S1 = Solution()
+    res = S1.twoSum(nums,target)
+    print(res)
