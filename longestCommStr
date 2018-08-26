@@ -1,0 +1,37 @@
+
+'''  解题思路是将每个字符串取第一个字符进行比较，返回bool值，然后得到最大的子串，因此刚开始定义了很多如切片函数，判断是否为子串的函数
+      后面发现效率很低，只能超过17%的提交者，分析原因后将大部分函数转换为了lambda临时函数，效率得到了一定的提升（27%），但是还是不高
+      目前找不到原因，先Mark一下，以后找机会解决。'''
+
+class Solution:
+    def isnotEmpty(self,strs):
+        return self.strs.__len__() !=0
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        self.strs = strs
+        self.commstr = ''
+        ls = lambda x:len(x)##取长度操作
+        sl = lambda x:x[1:]###切片操作
+        stw = lambda x,y:x.startswith(y)###判断是否为前缀的操作
+        if self.isnotEmpty(self.strs):###如果空值直接返回空值
+            lstrs = min(map(ls, self.strs))
+        else:
+            return self.commstr
+        while (lstrs>0):
+            for i in range(self.strs.__len__()):
+                flag = stw(self.strs[i], self.strs[0][0])
+                if flag == False:
+                    return self.commstr
+            self.commstr = self.commstr+self.strs[0][0]
+            self.strs = [sl(x) for x in self.strs ]
+            lstrs -=1
+        return self.commstr
+
+if __name__ =='__main__':
+    strs = ['abcdfg','abdfr','aberf']
+    s1 = Solution()
+    comstr = s1.longestCommonPrefix(strs)
+    print (comstr)
